@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace DepotDownloader
 {
-    class DownloadConfig
+    public class DownloadConfig
     {
         public int CellID { get; set; }
         public bool DownloadAllPlatforms { get; set; }
@@ -14,6 +14,7 @@ namespace DepotDownloader
         public bool DownloadAllLanguages { get; set; }
         public bool DownloadManifestOnly { get; set; }
         public string InstallDirectory { get; set; }
+        public string InstallDirectorySuffix { get; set; }
 
         public bool UsingFileList { get; set; }
         public HashSet<string> FilesToDownload { get; set; }
