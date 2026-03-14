@@ -74,16 +74,20 @@ namespace DepotDownloader
                 {
                     Directory.CreateDirectory(DEFAULT_DOWNLOAD_DIR);
 
-                    var depotPath = Path.Combine(DEFAULT_DOWNLOAD_DIR, depotId.ToString());
-                    Directory.CreateDirectory(depotPath);
-
-                    // installDir = Path.Combine(depotPath, depotVersion.ToString());
-                    // Directory.CreateDirectory(installDir);
-                    installDir = depotPath;
                     if (!string.IsNullOrWhiteSpace(Config.InstallDirectorySuffix))
                     {
-                        installDir = Path.Combine(installDir, Config.InstallDirectorySuffix);
+                        // Workshop downloads use the suffix as their final output directory.
+                        installDir = Path.Combine(DEFAULT_DOWNLOAD_DIR, Config.InstallDirectorySuffix);
                         Directory.CreateDirectory(installDir);
+                    }
+                    else
+                    {
+                        var depotPath = Path.Combine(DEFAULT_DOWNLOAD_DIR, depotId.ToString());
+                        Directory.CreateDirectory(depotPath);
+
+                        // installDir = Path.Combine(depotPath, depotVersion.ToString());
+                        // Directory.CreateDirectory(installDir);
+                        installDir = depotPath;
                     }
 
                     Directory.CreateDirectory(Path.Combine(installDir, CONFIG_DIR));
